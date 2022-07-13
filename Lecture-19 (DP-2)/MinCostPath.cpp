@@ -73,12 +73,10 @@ int minCostPath(int **input, int m, int n){
   if(m==0 || n==0){
     return INT_MAX;
   }
+
+  arr[m-1][n-1]=input[m-1][n-1];
   for(int i=m-1;i>=0;i--){
     for(int j=n-1;j>=0;j--){
-      if(i==m-1 && j==n-1){
-        arr[i][j]=input[m-1][n-1];
-      }
-      else{
         if(i+1>=m ){
           arr[i][j]=input[i][j]+arr[i][j+1];
         }
@@ -93,7 +91,6 @@ int minCostPath(int **input, int m, int n){
           arr[i][j]=input[i][j]+min(a,min(b,c));
         }
       }
-    }
   }
 
   return arr[0][0];
