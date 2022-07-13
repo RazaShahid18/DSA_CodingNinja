@@ -44,14 +44,14 @@ int minCostPath(int **input,int m, int n, int **ans){
 }
 
 int minCostPath(int **input, int m, int n){
-  int **arr= new int *[n];
+  int **arr= new int *[m];
 
-  for(int i=0;i<n;i++){
-    arr[i]= new int[m];
+  for(int i=0;i<m;i++){
+    arr[i]= new int[n];
   }
 
-  for(int i=0;i<n;i++){
-    for(int j=0;j<m;j++){
+  for(int i=0;i<m;i++){
+    for(int j=0;j<n;j++){
       arr[i][j]=-1;
     }
   }
