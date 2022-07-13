@@ -19,7 +19,7 @@ int minCostPath(int **input, int m, int n){
 }*/
 
 
-//Memoisation
+//MEMOISATION
 /*
 int minCostPath(int **input,int m, int n, int **ans){
   if(m==0 || n==0){
@@ -61,7 +61,7 @@ int minCostPath(int **input, int m, int n){
 
 
 //DP
-
+/*
 int minCostPath(int **input, int m, int n){
   int **arr= new int *[m];
 
@@ -94,7 +94,31 @@ int minCostPath(int **input, int m, int n){
 
   return arr[0][0];
 }
+*/
 
+//DP with no extra space (The best solution)
+
+int minCostPath(int **input, int m, int n){
+
+  //Filling the last column
+  for(int i=m-2;i>=0;i--){
+    input[i][n-1]+=input[i+1][n-1];
+  }
+
+  //Filling the last row
+  for(int j=n-2;j>=0;j--){
+    input[m-1][j]+=input[m-1][j+1];
+  }
+
+  //Filling the remaining cells
+  for(int i=m-2;i>=0;i--){
+    for(int j=n-2;j>=0;j--){
+      input[i][j]+=min(input[i+1][j+1],min(input[i+1][j],input[i][j+1]));
+    }
+  }
+
+  return input[0][0];
+}
 
 
 int main(){
