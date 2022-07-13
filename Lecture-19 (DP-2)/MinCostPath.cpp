@@ -64,25 +64,25 @@ int minCostPath(int **input, int m, int n){
 //DP
 
 int minCostPath(int **input, int m, int n){
-  int **arr= new int *[n];
+  int **arr= new int *[m];
 
-  for(int i=0;i<n;i++){
-    arr[i]= new int[m];
+  for(int i=0;i<m;i++){
+    arr[i]= new int[n];
   }
 
   if(m==0 || n==0){
     return INT_MAX;
   }
-  for(int i=n-1;i>=0;i--){
-    for(int j=m-1;j>=0;j--){
-      if(i==n-1 && j==m-1){
+  for(int i=m-1;i>=0;i--){
+    for(int j=n-1;j>=0;j--){
+      if(i==m-1 && j==n-1){
         arr[i][j]=input[m-1][n-1];
       }
       else{
-        if(i+1>=n ){
+        if(i+1>=m ){
           arr[i][j]=input[i][j]+arr[i][j+1];
         }
-        else if(j+1>=m){
+        else if(j+1>=n){
           arr[i][j]=input[i][j]+arr[i+1][j];
         }
         else{
@@ -90,7 +90,7 @@ int minCostPath(int **input, int m, int n){
           int b=arr[i][j+1];
           int c=arr[i+1][j+1];
 
-        arr[i][j]=input[i][j]+min(a,min(b,c));
+          arr[i][j]=input[i][j]+min(a,min(b,c));
         }
       }
     }
@@ -98,6 +98,7 @@ int minCostPath(int **input, int m, int n){
 
   return arr[0][0];
 }
+
 
 
 int main(){
